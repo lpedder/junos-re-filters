@@ -17,7 +17,7 @@ These packets are punted to the RE and a possible attack vector. If you don't ne
 If your network runs RSVP on an older version of JunOS <15.2 (or uses multiple vendors) then perhaps it relies upon the IP Options Router Alert bit. Upon receipt of an packet with this bit set, the router will punt it to the RE, opening a possible attack vector. If you run RSVP the chances are it now uses RFC2961 refresh reduction which prohibits the use of the Router Alert bit in bundled messages.
 
 If you are sure your network does not need IP Options processing, then deal with this first.
- * [Discard Term for IPv4 Options](options/inet/input.conf)
+ * [Discard Term for IPv4 Options](options/inet.conf)
 
 ### Fragments
 
@@ -34,7 +34,7 @@ Subsequent IPv4 Fragments will have:
 
 Because the RE filters are simply bitwise matching on the packet header, there is a theoretical possibility subsequent fragment payloads could match a firewall filter term. So to be absolutely sure, any packet with a non-zero fragment offset should be immediately discarded before further terms are evaluated.
 
- * [Discard Term for IPv4 Fragments](fragments/inet/input.conf)
+ * [Discard Term for IPv4 Fragments](fragments/inet.conf)
 
 With IPv6, because all fragments are placed in fragment headers, they can be identified easily:
  * next-header value set to fragment (44).
@@ -120,15 +120,15 @@ Following the principle of least privilege, if there is a way to further restric
 If an RFC states a protocol MUST set a TTL or hop-limit value for a packet type, then this can help to further limit access in a filter term. For example in IPv6 Neighbor Discovery, the hop-limit value is set to 255. This should be matched in the filter term for ND packets.
 
 ## Protocols
-Here are individual filter elements for each protocol, with references provided to RFCs and documentation.
+Here are individual filter elements for each protocol, with references provided to RFCs and documentation. Some protocols have a specific README file that explains the rationale.
 
-* [BGP](bgp) [inet](bgp/inet) [inet6](bgp/inet6)
-* [OSPF](ospf) [inet](ospf/inet) [inet6](ospf/inet6)
-* [VRRP](vrrp) [inet](vrrp/inet) [inet6](vrrp/inet6)
-* [ICMP](icmp) [inet](icmp/inet) [inet6](icmp/inet6)
-* [RSVP](rsvp) [inet](rsvp/inet)
-* [LDP](ldp) [inet](ldp/inet)
-* [BFD](bfd) [inet](bfd/inet) [inet6](bfd/inet6)
+* [BGP](bgp)
+* [OSPF](ospf)
+* [VRRP](vrrp)
+* [ICMP](icmp)
+* [RSVP](rsvp)
+* [LDP](ldp)
+* [BFD](bfd)
 
 ## Management Protocols
 Individual filter elements for each management protocol
@@ -136,4 +136,4 @@ Individual filter elements for each management protocol
 * [SSH](ssh)
 * [SNMP](snmp)
 * [NTP](ntp)
-* [Traceroute](traceroute) [inet](traceroute/inet)
+* [Traceroute](traceroute)
