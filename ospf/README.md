@@ -11,4 +11,4 @@ In the case of a network exclusively using point-to-point links, the destination
 >follows.  On physical point-to-point networks, the IP
 >destination is always set to the address AllSPFRouters."
 
-Therefore the filter can be restricted to only allow this destination addres. This will significantly reduce the available attack surface.
+Therefore the filter can be restricted to only allow this destination address. This will significantly reduce the available attack surface by elimintating any unicast destinations.
